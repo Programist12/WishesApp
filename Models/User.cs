@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Newtonsoft.Json.Serialization;
+using System.ComponentModel.DataAnnotations;
 
 namespace WishesApp.Models
 {
@@ -16,6 +17,9 @@ namespace WishesApp.Models
         public string PhoneNumber { get; set; }
         [StringLength(500)]
         public string About { get; set; }
+        [Required]
+        [StringLength (32)]
+        public string Password { get; set; }
 
         public ICollection<Wish> Wishes { get; set; }
 

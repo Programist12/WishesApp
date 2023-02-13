@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using WishesApp.DBContext;
+using WishesApp.Models;
 using WishesApp.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +10,8 @@ options.UseSqlServer(builder.Configuration.GetConnectionString("AppDbContext")))
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<IGenericRepository<Wish>, GenericRepository<Wish>>();
+builder.Services.AddScoped<IGenericRepository<User>, GenericRepository<User>>();
 
 var app = builder.Build();
 

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 
 namespace WishesApp.Models
 {
@@ -11,8 +12,8 @@ namespace WishesApp.Models
         [Required]
         public string Type { get; set; }
         [Required]
+        [BindProperty, DisplayFormat(DataFormatString = "{0:yyyy-MM-ddTHH:mm}", ApplyFormatInEditMode = true)]
         public DateTime Estimate { get; set; }
-        [Required]
         public DateTime CreationDate { get; set; } = DateTime.Now;
         public User User { get; set; }
         public string Status { get; set; }

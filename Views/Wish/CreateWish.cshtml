@@ -1,0 +1,28 @@
+﻿@using WishesApp.DTO
+@model DtoWish
+@{
+    ViewData["Title"] = "Create Wish";
+}
+
+<form method="post">
+    <div class="border p-3 mt-4">
+        <div class="row pb-2">
+            <h2 class="text-primary">Create Wish</h2>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Name"></label>
+            <input asp-for="Name" class="form-control" />
+            <label asp-for="Type"></label>
+            <input asp-for="Type" class="form-control" />
+            <label asp-for="Estimate"></label>
+            <input asp-for="Estimate" class="form-control" />
+            <label asp-for="Status"></label>
+            <input asp-for="Status" class="form-control" />
+            <label asp-for="Links"></label>
+            <input asp-for="Links" class="form-control" />
+            <label asp-for="Desires"></label>
+            <input asp-for="Desires" class="form-control" />
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:150px">Create</button>
+    </div>
+</form>
