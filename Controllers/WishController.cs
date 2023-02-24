@@ -8,10 +8,12 @@ namespace WishesApp.Controllers
     public class WishController : Controller
     {
         private IGenericRepository<Wish> _WishReporsitory;
+        private IUserRepository _ExtendedUserRepository;
 
-        public WishController(IGenericRepository<Wish> wishReporsitory)
+        public WishController(IGenericRepository<Wish> wishReporsitory, IUserRepository extendedUserRepository)
         {
             _WishReporsitory = wishReporsitory;
+            _ExtendedUserRepository = extendedUserRepository;
         }
 
         [HttpGet]
@@ -35,7 +37,11 @@ namespace WishesApp.Controllers
         [HttpGet]
         public IActionResult CreateWish()
         {
-            return View();
+
+            return View(new DtoWish
+            {
+                AvailableUsersForWish = _ExtendedUserRepository.GetUserMails()
+            });
         }
 
 
@@ -44,19 +50,28 @@ namespace WishesApp.Controllers
         {
             if (wish != null)
             {
-                Wish WishToAdd = new Wish()
+                var SelectedUser = _ExtendedUserRepository.GetUserByEmail(wish.SelectedUserEmail);
+                if (SelectedUser != null)
                 {
-                    Name = wish.Name,
-                    Type = wish.Type,
-                    Status = wish.Status,
-                    Links = wish.Links,
-                    Desires = wish.Desires,
-                };
-                _WishReporsitory.Add(WishToAdd);
-                _WishReporsitory.Save();
-            }
+                    Wish WishToAdd = new Wish()
+                    {
+                        Name = wish.Name,
+                        Type = wish.Type,
+                        Status = wish.Status,
+                        Links = wish.Links,
+                        Desires = wish.Desires,
+                        User = SelectedUser,
+                        UserEmail = wish.SelectedUserEmail
+                    };
+                    _WishReporsitory.Add(WishToAdd);
+                }
 
-            return RedirectToAction("Index");
+
+                _WishReporsitory.Save();
+                return Ok("wish created");
+            }
+            return BadRequest("Something went wrong!");
+
 
         }
     }

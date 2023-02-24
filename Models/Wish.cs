@@ -19,6 +19,7 @@ namespace WishesApp.Models
         public string Status { get; set; }
         public string Links { get; set; }
         public string Desires { get; set; }
+        public string UserEmail { get; set; }
 
     }
 }

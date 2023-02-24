@@ -6,37 +6,38 @@
 
 <div class="border p-3 mt-4">
     <div class="row pb-2">
-        <h2 class="text-primary">List of Wishes</h2>
+        <h2>List of Wishes</h2>
     </div>
     <div class="mb-3">
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th scope="col" @Html.DisplayNameFor(model =>model.Name)></th>
-                    <th scope="col" @Html.DisplayNameFor(model =>model.Type)></th>
-                    <th scope="col" @Html.DisplayNameFor(model =>model.Estimate)></th>
-                    <th scope="col" @Html.DisplayNameFor(model =>model.CreationDate)></th>
-                    <th scope="col" @Html.DisplayNameFor(model =>model.User.UserId)></th>
-                    <th scope="col" @Html.DisplayNameFor(model =>model.Status)></th>
-                    <th scope="col" @Html.DisplayNameFor(model =>model.Links)></th>
-                    <th scope="col" @Html.DisplayNameFor(model =>model.Desires)></th>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Estimate</th>
+                    <th>Creation Date</th>
+                    <th>User Who Created</th>
+                    <th>Status</th>
+                    <th>Link</th>
+                    <th>Desires</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var item in Model)
                 {
                     <tr>
-                        <td @Html.DisplayFor(wish => item.Name)></td>
-                        <td @Html.DisplayFor(wish => item.Type)></td>
-                        <td @Html.DisplayFor(wish => item.Estimate)></td>
-                        <td @Html.DisplayFor(wish => item.CreationDate)></td>
-                        <td @Html.DisplayFor(wish => item.User.UserId)></td>
-                        <td @Html.DisplayFor(wish => item.Status)></td>
-                        <td @Html.DisplayFor(wish => item.Links)></td>
-                        <td @Html.DisplayFor(wish => item.Desires)></td>
+                        <td>@item.Name</td>
+                        <td>@item.Type</td>
+                        <td>@item.Estimate</td>
+                        <td>@item.CreationDate</td>
+                        <td>@item.UserEmail</td>
+                        <td>@item.Status</td>
+                        <td>@item.Links</td>
+                        <td>@item.Desires</td>
                     </tr>
                 }
             </tbody>
         </table>
     </div>
+</div>
 

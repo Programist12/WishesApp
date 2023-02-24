@@ -1,5 +1,6 @@
 ﻿using WishesApp.Models;
 using WishesApp.DBContext;
+using Microsoft.EntityFrameworkCore;
 
 namespace WishesApp.Repositories
 {
@@ -15,11 +16,23 @@ namespace WishesApp.Repositories
 
         public bool GetUserByPassword(string password)
         {
-            var existingUser = _appDbContext.Users.FirstOrDefault(x => x.Password == password);
+            var existingUser = _appDbContext.Users.SingleOrDefault(x => x.Password == password);
             if (existingUser != null)
                 return true;
             else
                 return false;
         }
+
+        public List<string> GetUserMails()
+        {
+            return _appDbContext.Users.Select(m => m.Email).ToList();
+        }
+
+        public User GetUserByEmail(string email)
+        {
+            return _appDbContext.Users.FirstOrDefault(u => u.Email == email);
+        }
+
+        
     }
 }
