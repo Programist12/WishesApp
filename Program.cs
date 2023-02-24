@@ -12,6 +12,7 @@ options.UseSqlServer(builder.Configuration.GetConnectionString("AppDbContext")))
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IGenericRepository<Wish>, GenericRepository<Wish>>();
 builder.Services.AddScoped<IGenericRepository<User>, GenericRepository<User>>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 var app = builder.Build();
 
@@ -28,6 +29,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=User}/{action=Login}/{id?}");
 
 app.Run();

@@ -9,16 +9,9 @@ namespace WishesApp.Models
         public int UserId { get; set; }
         [Required]
         [StringLength(100)]
-        public string Name { get; set; }
+        public string Email { get; set; }
         [Required]
         [StringLength(100)]
-        public string SecondName { get; set; }
-        [Required]
-        public string PhoneNumber { get; set; }
-        [StringLength(500)]
-        public string About { get; set; }
-        [Required]
-        [StringLength (32)]
         public string Password { get; set; }
 
         public ICollection<Wish> Wishes { get; set; }
